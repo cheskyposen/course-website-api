@@ -9,4 +9,4 @@
     //$init = new Core;
     // un sets global vars
     unset($GLOBALS);
-    return json_encode(['msg' => 'welcome to our app']);
+    echo json_encode(['msg' => 'welcome to our app']);
