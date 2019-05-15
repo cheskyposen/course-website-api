@@ -1,25 +1,11 @@
 <?php
-
-require('../vendor/autoload.php');
-
-$app = new Silex\Application();
-$app['debug'] = true;
-
-// Register the monolog logging service
-$app->register(new Silex\Provider\MonologServiceProvider(), array(
-  'monolog.logfile' => 'php://stderr',
-));
-
-// Register view rendering
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/views',
-));
-
-// Our web handlers
-
-$app->get('/', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
-});
-
-$app->run();
+    // sets return type in header
+    header('Content-type: application/json');
+    // gets an associative array of all headers in the http request
+    $GLOBALS['headers'] = apache_request_headers();
+    // includes all required libraries for the api
+    require_once '../app/bootstrap.php';
+    // Init Core Library
+    $init = new Core;
+    // un sets global vars
+    unset($GLOBALS);
