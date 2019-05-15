@@ -7,7 +7,7 @@ class Home extends Controller
     private $currentModel;
     public function __construct()
     {
-        $this->currentModel = $this->model('main', 'Main');
+        // $this->currentModel = $this->model('main', 'Main');
     }
 
     // this function returns all the announcements from the database, since anyone can see the announcements page it doesnt check for a token first
