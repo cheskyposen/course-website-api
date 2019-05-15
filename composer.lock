@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e66fd5c3f8342ff9ed1f0d21aab6ef81",
+    "content-hash": "0a5a630f1e6e876fb811878353600ce6",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -260,6 +260,7 @@
             "keywords": [
                 "microframework"
             ],
+            "abandoned": "symfony/flex",
             "time": "2016-11-06T18:09:06+00:00"
         },
         {
@@ -844,6 +845,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-pdo": "^7.2"
+    },
     "platform-dev": []
 }
