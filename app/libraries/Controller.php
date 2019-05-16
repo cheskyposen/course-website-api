@@ -23,6 +23,9 @@ class Controller {
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
             if($res->token === $token && $res->ip === $ip){
+                $db->query("UPDATE auth SET expiry = NOW() + INTERVAL '30 minutes' WHERE token = :token");
+                $db->bind(':token', $token);
+                $db->execute();
                 $this->cleanTokens();
                 return ($res->student_id > 0) ? $res->student_id : $res->teacher_id;
             }else{
