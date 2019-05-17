@@ -58,12 +58,12 @@ class SignIn
                 // checks if teacher or student to assign right foreign key
                 switch ($type){
                     case 'teacher':
-                        $this->db->bind(':studentID', null);
+                        $this->db->bind(':studentID', 1000);
                         $this->db->bind(':teacherID', $id);
                         break;
                     case 'student':
                         $this->db->bind(':studentID', $id);
-                        $this->db->bind(':teacherID', null);
+                        $this->db->bind(':teacherID', 1000);
                 }
                 // inserts token with expiry and ip to database, return token on success or false on failure
                 if ($this->db->execute()){

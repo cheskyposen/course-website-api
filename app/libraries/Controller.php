@@ -25,7 +25,7 @@ class Controller {
             // returns student or teachers id if verified else returns false
             if($res->token === $token && $res->ip === $ip){
                 Controller::cleanTokens();
-                return isset($res->teacher_id) ? $res->teacher_id : $res->student_id;
+                return ($res->teacher_id < 1000) ? $res->teacher_id : $res->student_id;
             }else{
                 return false;
             }
@@ -53,7 +53,7 @@ class Controller {
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
             if($res->token === $token && $res->ip === $ip){
-                return isset($res->student_id) ? 'student' : 'teacher';
+                return ($res->student_id < 1000) ? 'student' : 'teacher';
             }else{
                 return false;
             }
