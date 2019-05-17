@@ -67,6 +67,7 @@ class SignIn
                 }
                 // inserts token with expiry and ip to database, return token on success or false on failure
                 $auth = $this->db->execute();
+                json_encode($auth);
                 if ($auth){
                     return $token;
                 }else{
