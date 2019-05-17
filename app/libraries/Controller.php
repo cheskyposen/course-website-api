@@ -19,7 +19,9 @@ class Controller {
         $db->query('SELECT * FROM auth WHERE token = :token AND expiry > now()');
         $db->bind(':token', $token);
         // check database if token exists and not expired
-        if ($res = $db->single()){
+        $res = $db->single();
+        echo json_encode($res);
+        if ($res){
             echo json_encode($res);
             Controller::updateTokenExpiry($token);
             // checks if token matches to ip address
