@@ -7,7 +7,7 @@
     if (isset($_SERVER['HTTP_ORIGIN'])) {
         // should do a check here to match $_SERVER['HTTP_ORIGIN'] to a
         // whitelist of safe domains
-        if ($_SERVER['HTTP_ORIGIN'] == "https://cheskyposen.github.io" || $_SERVER['HTTP_ORIGIN'] == "https://hiya5150.github.io") {
+        if ($_SERVER['HTTP_ORIGIN'] == "https://cheskyposen.github.io" || $_SERVER['HTTP_ORIGIN'] == "https://hiya5150.github.io" || $_SERVER['HTTP_ORIGIN'] == "http://localhost:4200") {
             header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
             header('Access-Control-Allow-Credentials: true');
             header('Access-Control-Max-Age: 86400');    // cache for 1 day
