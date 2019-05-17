@@ -20,7 +20,7 @@ class Controller {
         $db->bind(':token', $token);
         // check database if token exists and not expired
         if ($res = $db->single()){
-            json_encode($res);
+            echo json_encode($res);
             Controller::updateTokenExpiry($token);
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
