@@ -66,7 +66,8 @@ class SignIn
                         $this->db->bind(':teacherID', intval('1000'));
                 }
                 // inserts token with expiry and ip to database, return token on success or false on failure
-                if ($this->db->execute()){
+                $auth = $this->db->execute();
+                if ($auth){
                     return $token;
                 }else{
                     return false;
