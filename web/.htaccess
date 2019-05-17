@@ -8,10 +8,10 @@
 </IfModule>
 
 # Set the headers for the restful api
-Header always set Access-Control-Allow-Origin "https://cheskyposen.github.io, https://hiya5150.github.io"
+# Header always set Access-Control-Allow-Origin https://cheskyposen.github.io
 # Header always set Access-control-Allow-Origin https://hiya5150.github.io
 # Header always set Access-control-Allow-Origin https://malkieg.github.io
 # Header always set Access-control-Allow-Origin https://lesches.github.io
-Header always set Access-Control-Max-Age "1000"
-Header always set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding"
-Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+# Header always set Access-Control-Max-Age "1000"
+Header set Access-Control-Allow-Headers "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding"
+# Header set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
