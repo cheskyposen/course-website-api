@@ -20,9 +20,11 @@ class Controller {
         $db->bind(':token', $token);
         // check database if token exists and not expired
         if ($res = $db->single()){
+            unset($db);
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
             if($res->token === $token && $res->ip === $ip){
+                $db = new Database();
                 $db->query("UPDATE auth SET expiry = NOW() + INTERVAL '30 minutes' WHERE token = :token");
                 $db->bind(':token', $token);
                 $db->execute();
