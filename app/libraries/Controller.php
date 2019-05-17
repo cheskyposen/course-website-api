@@ -14,7 +14,7 @@ class Controller {
     // @param token from http request header ($GLOBALS['headers'])
     // @param ip from address requested from ($_SERVER['REMOTE_ADDR'])
     public function verifyToken($token, $ip){
-        $db = new Database();
+        $db = new Database;
 
         $db->query('SELECT * FROM auth WHERE token = :token AND expiry > now()');
         $db->bind(':token', $token);
@@ -35,7 +35,7 @@ class Controller {
     }
     // cleans expired tokens
     private static function cleanTokens(){
-        $db = new Database();
+        $db = new Database;
         $db->query('DELETE FROM auth WHERE  expiry < now()');
         $db->execute();
         unset($db);
@@ -44,7 +44,7 @@ class Controller {
     // @param token from http request header ($GLOBALS['headers'])
     // @param ip from address requested from ($_SERVER['REMOTE_ADDR'])
     public static function verifyTokenUserType($token, $ip){
-        $db = new Database();
+        $db = new Database;
 
         $db->query('SELECT * FROM auth WHERE token = :token AND expiry > now()');
         $db->bind(':token', $token);
@@ -63,7 +63,7 @@ class Controller {
     }
 
     private static function updateTokenExpiry($token){
-        $db = new Database();
+        $db = new Database;
         $db->query("UPDATE auth SET expiry = NOW() + INTERVAL '30 minutes' WHERE token = :token");
         $db->bind(':token', $token);
         $db->execute();
