@@ -42,7 +42,7 @@ class Assignments extends Controller
     {
         if(isset($GLOBALS['headers']['Authorization'])) {
             $id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']);
-            if (isset($id) && $id < 1000){
+            if (isset($id) && $id < 1000 && $id != false){
 
                 $assignments = $this->currentModel->getAssignments();
 
