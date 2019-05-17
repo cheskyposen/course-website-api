@@ -20,16 +20,12 @@ class Controller {
         $db->bind(':token', $token);
         // check database if token exists and not expired
         if ($res = $db->single()){
-            unset($db);
+            Controller::updateTokenExpiry($token);
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
             if($res->token === $token && $res->ip === $ip){
-                $db = new Database();
-                $db->query("UPDATE auth SET expiry = NOW() + INTERVAL '30 minutes' WHERE token = :token");
-                $db->bind(':token', $token);
-                $db->execute();
-                $this->cleanTokens();
-                return ($res->student_id > 0) ? $res->student_id : $res->teacher_id;
+                Controller::cleanTokens();
+                return isset($res->teacher_id) ? $res->teacher_id : $res->student_id;
             }else{
                 return false;
             }
@@ -38,7 +34,7 @@ class Controller {
         }
     }
     // cleans expired tokens
-    private function cleanTokens(){
+    private static function cleanTokens(){
         $db = new Database();
         $db->query('DELETE FROM auth WHERE  expiry < now()');
         $db->execute();
@@ -57,12 +53,20 @@ class Controller {
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
             if($res->token === $token && $res->ip === $ip){
-                return ($res->student_id > 0) ? 'student' : 'teacher';
+                return isset($res->student_id) ? 'student' : 'teacher';
             }else{
                 return false;
             }
         } else {
             return false;
         }
+    }
+
+    private static function updateTokenExpiry($token){
+        $db = new Database();
+        $db->query("UPDATE auth SET expiry = NOW() + INTERVAL '30 minutes' WHERE token = :token");
+        $db->bind(':token', $token);
+        $db->execute();
+        unset($db);
     }
 }
