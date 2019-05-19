@@ -1,9 +1,6 @@
 <?php
     // sets return type in header
     header('Content-type: application/json');
-    // gets an associative array of all headers in the http request
-    $GLOBALS['headers'] = getallheaders();
-    $GLOBALS['headers']['Authorization'] = substr($GLOBALS['headers']['Authorization'], 7);
     // includes all required libraries for the api
     require_once '../app/bootstrap.php';
     // Allow from any origin
@@ -26,6 +23,9 @@
             }
         }
     }
+    // gets an associative array of all headers in the http request
+    $GLOBALS['headers'] = getallheaders();
+    $GLOBALS['headers']['Authorization'] = substr($GLOBALS['headers']['Authorization'], 7);
     // Init Core Library
     $init = new Core;
     // un sets global vars
