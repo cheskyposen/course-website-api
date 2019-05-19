@@ -5,8 +5,7 @@
     "symfony/twig-bridge": "^3",
     "ext-PDO": "^7.2",
     "ext-json": "^1.6",
-    "symfony/flex": "^1.2",
-    "ext-apache": "*"
+    "symfony/flex": "^1.2"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
