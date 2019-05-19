@@ -36,7 +36,7 @@ class announcement {
     }
 
     public function deleteAnnouncement($data){
-        $this->db->query('DELETE FROM announcements WHERE teacher_id = :teacher_id && ann_id = :ann_id');
+        $this->db->query('DELETE FROM announcements WHERE teacher_id = :teacher_id AND ann_id = :ann_id');
         $this->db->bind(':teacher_id', $data['teacher_id']);
         $this->db->bind(':ann_id', $data['ann_id']);
 
