@@ -10,7 +10,7 @@ class Grades extends Controller {
     public function viewOneSubmissionOneStudent($studentID, $asnID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'student_id' => $studentID,
                     'asn_id' => $asnID
@@ -32,7 +32,7 @@ class Grades extends Controller {
     public function viewAllSubmissionsOneStudent($studentID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'student_id' => $studentID
                 ];
@@ -53,7 +53,7 @@ class Grades extends Controller {
     public function viewAllSubmissionsOneAssignment($asnID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'asn_id' => $asnID
                 ];
@@ -73,7 +73,7 @@ class Grades extends Controller {
 // this function takes the assignemnt id as a parameter and returns the number of submissions that have been submitted for that assignment
     public function rowCount($asnID) {
         if(isset($GLOBALS['headers']['Authorization'])){
-            if($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])){
+            if(is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))){
                 $data = [
                     'asn_id' => $asnID
                 ];
@@ -94,7 +94,7 @@ class Grades extends Controller {
     public function editGrade($studentID, $asnID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                     $data = [

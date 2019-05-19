@@ -30,7 +30,7 @@ class Assignments extends Controller {
     public function viewPrivateAssignments()
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'teacher_id' => $id
                 ];
@@ -52,7 +52,7 @@ class Assignments extends Controller {
 // This function returns one specific assignment it takes the assignment id as a parameter
     public function viewOneAssignment($asnID){
         if(isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])){
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))){
                 $data = [
                     'asn_id'=>$asnID
                 ];
@@ -73,7 +73,7 @@ class Assignments extends Controller {
     public function createAssignment()
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                     $data = [
@@ -103,7 +103,7 @@ class Assignments extends Controller {
     public function deleteAssignment($asnID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'teacher_id' => $id,
                     'asn_id' => $asnID
@@ -124,7 +124,7 @@ class Assignments extends Controller {
     public function editAssignment($asnID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                     $data = [

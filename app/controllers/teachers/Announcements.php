@@ -11,7 +11,7 @@ class Announcements extends Controller {
     public function viewAnnouncements()
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $announcements = $this->currentModel->viewAnnouncements();
                 if ($announcements) {
                     echo json_encode($announcements);
@@ -30,7 +30,7 @@ class Announcements extends Controller {
     public function viewPrivateAnnouncements()
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'teacher_id' => $id
                 ];
@@ -53,7 +53,7 @@ class Announcements extends Controller {
     public function createAnnouncement()
     {
         if(isset($GLOBALS['headers']['Authorization'])){
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])){
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -82,7 +82,7 @@ class Announcements extends Controller {
     public function deleteAnnouncement($annID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'teacher_id' => $id,
                     'ann_id' => $annID
@@ -104,7 +104,7 @@ class Announcements extends Controller {
     public function editAnnouncement($annID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                     $data = [
