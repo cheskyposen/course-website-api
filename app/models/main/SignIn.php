@@ -52,23 +52,13 @@ class SignIn
         try{
             // try creating random token else throw error
             if($token = bin2hex(random_bytes(32))){
-                $this->db->query("INSERT INTO auth(token, ip, student_id, teacher_id) VALUES (:token, :ip, :studentID, :teacherID)");
+                $this->db->query("INSERT INTO auth(token, ip, id, user_type) VALUES (:token, :ip, :id, :user_type)");
                 $this->db->bind(':token', $token);
                 $this->db->bind(':ip', $ip);
-                // checks if teacher or student to assign right foreign key
-                switch ($type){
-                    case 'teacher':
-                        $this->db->bind(':studentID', intval('1000'));
-                        $this->db->bind(':teacherID', $id);
-                        break;
-                    case 'student':
-                        $this->db->bind(':studentID', $id);
-                        $this->db->bind(':teacherID', intval('1000'));
-                }
+                $this->db->bind(':id', $id);
+                $this->db->bind(':user_type', $type);
                 // inserts token with expiry and ip to database, return token on success or false on failure
-                $auth = $this->db->execute();
-                echo json_encode($auth);
-                if ($auth){
+                if ($auth = $this->db->execute()){
                     return $token;
                 }else{
                     return false;
