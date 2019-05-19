@@ -3,6 +3,7 @@
     header('Content-type: application/json');
     // gets an associative array of all headers in the http request
     $GLOBALS['headers'] = apache_request_headers();
+    echo json_encode($GLOBALS);
     // includes all required libraries for the api
     require_once '../app/bootstrap.php';
     // Allow from any origin
