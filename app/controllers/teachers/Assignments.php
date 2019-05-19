@@ -12,7 +12,7 @@ class Assignments extends Controller {
     public function viewAssignments()
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            if ($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR'])) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $assignments = $this->currentModel->viewAssignments();
                 if ($assignments) {
                     echo json_encode($assignments);
