@@ -11,9 +11,9 @@ class SignUp
 
     // Register user
     public function registerTeacher($data){
-        $this->db->query('INSERT INTO teachers (teacher_name, teacher_username, teacher_password) VALUES(:name, :username, :password)');
+        $this->db->query('INSERT INTO teachers (teacher_name, teacher_username, teacher_password) VALUES(:fullname, :username, :password)');
         // Bind values
-        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':fullname', $data['name']);
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':password', $data['password']);
 
@@ -27,9 +27,9 @@ class SignUp
 
     // Register user
     public function registerStudent($data){
-        $this->db->query('INSERT INTO students (student_name, student_username, student_password) VALUES(:name, :username, :password)');
+        $this->db->query('INSERT INTO students (student_name, student_username, student_password) VALUES(:fullname, :username, :password)');
         // Bind values
-        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':fullname', $data['name']);
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':password', $data['password']);
 

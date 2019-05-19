@@ -14,7 +14,7 @@ class grade {
     }
     //1.
     public function viewOneSubmissionOneStudent($data){
-        $this->db->query('SELECT grades.*, assignments.asn_title, students.student_name  FROM grades LEFT JOIN assignments ON assignments.asn_id = grades.asn_id LEFT JOIN students ON students.student_id = grades.student_id WHERE grades.student_id = :student_id && grades.asn_id = :asn_id');
+        $this->db->query('SELECT grades.*, assignments.asn_title, students.student_name  FROM grades LEFT JOIN assignments ON assignments.asn_id = grades.asn_id LEFT JOIN students ON students.student_id = grades.student_id WHERE grades.student_id = :student_id AND grades.asn_id = :asn_id');
         $this->db->bind(':student_id', $data['student_id']);
         $this->db->bind(':asn_id', $data['asn_id']);
 
@@ -33,7 +33,7 @@ class grade {
 
     //3.
     public function viewAllSubmissionsOneAssignment($data){
-        $this->db->query('SELECT grades.*, students.student_name FROM grades LEFT JOIN students on students.student_id = grades.student_id WHERE asn_id = :asn_id');
+        $this->db->query('SELECT grades.*, students.student_name FROM grades LEFT JOIN students ON students.student_id = grades.student_id WHERE asn_id = :asn_id');
         $this->db->bind(':asn_id', $data['asn_id']);
 
         $results = $this->db->resultSet();
@@ -48,7 +48,7 @@ class grade {
     }
 
     public function editGrade($data){
-        $this->db->query('UPDATE grades SET grade = :grade WHERE teacher_id = :teacher_id && student_id= :student_id && asn_id = :asn_id');
+        $this->db->query('UPDATE grades SET grade = :grade WHERE teacher_id = :teacher_id AND student_id = :student_id AND asn_id = :asn_id');
         $this->db->bind(':teacher_id', $data['teacher_id']);
         $this->db->bind(':student_id', $data['student_id']);
         $this->db->bind(':asn_id', $data['asn_id']);

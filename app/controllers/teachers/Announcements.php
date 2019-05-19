@@ -82,8 +82,7 @@ class Announcements extends Controller {
     public function deleteAnnouncement($annID)
     {
         if (isset($GLOBALS['headers']['Authorization'])) {
-            $id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']);
-            if ($id !== false) {
+            if (is_numeric($id = $this->verifyToken($GLOBALS['headers']['Authorization'], $_SERVER['REMOTE_ADDR']))) {
                 $data = [
                     'teacher_id' => $id,
                     'ann_id' => $annID

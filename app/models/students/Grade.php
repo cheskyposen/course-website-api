@@ -13,7 +13,7 @@ class Grade
 //this function allows users to see one assignments grade
     public function getGradeByAssignment($data)
     {
-        $this->db->query('SELECT grades.*, assignments.asn_title, teachers.teacher_name FROM grades INNER JOIN assignments ON assignments.asn_id = grades.asn_id INNER JOIN teachers ON teachers.teacher_id = grades.teacher_id WHERE student_id = :student_id && grades.asn_id = :asn_id');
+        $this->db->query('SELECT grades.*, assignments.asn_title, teachers.teacher_name FROM grades INNER JOIN assignments ON assignments.asn_id = grades.asn_id INNER JOIN teachers ON teachers.teacher_id = grades.teacher_id WHERE student_id = :student_id AND grades.asn_id = :asn_id');
         $this->db->bind(':student_id', $data['student_id']);
         $this->db->bind(':asn_id', $data['asn_id']);
 
