@@ -43,7 +43,7 @@ class Login extends Controller
             // verifies username and password returns user details or false
             if ($user = $this->currentModel->loginStudent($data['username'], $data['password'])){
                 // sets a token with 1 hour expiry, if failed returns false
-                if($token = $this->currentModel->setToken($user->student_id, 'student', $_SERVER['REMOTE_HOST'])){
+                if($token = $this->currentModel->setToken($user->student_id, 'student', $_SERVER['REMOTE_ADDR'])){
                     echo json_encode(['token' => $token]);
                 } else {
                     echo json_encode(['error' => "login failed"]);
