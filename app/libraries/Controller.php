@@ -23,7 +23,7 @@ class Controller {
             Controller::updateTokenExpiry($token);
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
-            if($res->token === $token && $res->ip === $ip){
+            if($res->token === $token){
                 Controller::cleanTokens();
                 return $res->id;
             }else{
@@ -52,7 +52,7 @@ class Controller {
         if ($res = $db->single()){
             // checks if token matches to ip address
             // returns student or teachers id if verified else returns false
-            if($res->token === $token && $res->ip === $ip){
+            if($res->token === $token){
                 return $res->user_type;
             }else{
                 return false;

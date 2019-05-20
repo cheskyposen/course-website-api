@@ -20,7 +20,6 @@
     $GLOBALS['headers'] = getallheaders();
     $GLOBALS['headers']['Authorization'] = substr($GLOBALS['headers']['Authorization'], 7);
     // Init Core Library
-    echo json_encode($_SERVER);
-    //$init = new Core;
+    $init = new Core;
     // un sets global vars
     unset($GLOBALS);
