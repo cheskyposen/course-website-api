@@ -1,28 +1,117 @@
-# php-getting-started
+the order of the parameters are:
+1.teacher_id 
+2.student_id 
+3. ann_id 
+4. ass_id
 
-A barebones PHP app that makes use of the [Silex](http://silex.sensiolabs.org/) web framework, which can easily be deployed to Heroku.
+MAIN FUNCTIONS
 
-This application supports the [Getting Started with PHP on Heroku](https://devcenter.heroku.com/articles/getting-started-with-php) article - check it out.
+HOME
+1. view all announcements
+localhost/course-website-server/main/Home/loadAnnouncements
 
-## Deploying
+2. verify teacher
+localhost/course-website-server/main/Home/verifyTeacherToken
 
-Install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+3. verify student
+localhost/course-website-server/main/Home/verifyStudentToken
 
-```sh
-$ git clone git@github.com:heroku/php-getting-started.git # or clone your own fork
-$ cd php-getting-started
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
 
-or
+LOGIN
+1. teacher login takes username, and password
+localhost/course-website-server/main/Login/teacherLogin
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+2. student login takes username, and password
+localhost/course-website-server/main/Login/studentLogin
 
-## Documentation
 
-For more information about using PHP on Heroku, see these Dev Center articles:
+REGISTER
+1. teacher register takes  name, username, and password
+localhost/course-website-server/main/Register/teacherRegister
 
-- [Getting Started with PHP on Heroku](https://devcenter.heroku.com/articles/getting-started-with-php)
-- [PHP on Heroku](https://devcenter.heroku.com/categories/php)
+2. student register takes  name, username, and password
+localhost/course-website-server/main/Register/studentRegister
+
+TEACHERS FUNCTIONS
+
+ANNOUNCEMENTS: (need to be logged in as a teacher, only the teacher who created the announcement can edit and delete it)
+
+1. view all announcements
+localhost/course-website-server/teachers/Announcements/viewAnnouncements
+
+2. view teacher who is logged ins announcements
+localhost/course-website-server/teachers/Announcements/viewPrivateAnnouncements
+
+3. create an announcement. will automatically take the id of the teacher who is logged in and will take the input info from annTitle and annBody
+localhost/course-website-server/teachers/Announcements/createAnnouncement
+
+4. delete an announcement. will check that it is the same teacher on its own, and it needs the annID as a parameter to know which announcement to delete
+localhost/course-website-server/teachers/Announcements/deleteAnnouncement/:annID
+
+5. edit an announcement.  will check that it is the same teacher on its own, and it needs the annID as a parameter to know which announcement to edit, and will take the edited info in the form of post information 'title' and 'body'
+localhost/course-website-server/teachers/Announcements/editAnnouncement/:annID
+
+
+ASSIGNMENTS: (need to be logged in as a teacher, only the teacher who created the assignment can edit and delete it)
+
+1. get back all assignments
+localhost/course-website-server/teachers/Assignments/viewAssignments
+
+2. get back teacher who is logged ins Assignments
+localhost/course-website-server/teachers/Assignments/viewPrivateAssignments
+
+3. get back one assignment,  will take in the asnID as a parameter to know which assignment to get back
+localhost/course-website-server/teachers/Assignments/viewOneAssignment/asnID
+
+4. create an assignment. will automatically take the id of the teacher who is logged in and will take the input info from $_POST['asnTitle'], $_POST['asnBody'], $_POST['asnDueDate'] and $_POST['asnGrade']
+localhost/course-website-server/teachers/Assignments/createAssignment
+
+5. delete an assignment. will check that it is the same teacher on its own, and it needs the asnID as a parameter to know which assignment to delete
+localhost/course-website-server/teachers/Assignments/deleteAssignment/:asnID
+
+6. edit an assignment.  will check that it is the same teacher on its own, and it needs the asnID as a parameter to know which announcement to edit, and will take the edited info in the form of post information $_POST['asnTitle'], $_POST['asnBody'], $_POST['asnDueDate'] and $_POST['asnGrade']
+localhost/course-website-server/teachers/Assignments/editAssignment/asnID
+
+
+GRADES: (need to be logged in as a teacher, only the teacher who created the assignment can view the submissions and edit and delete the grades)
+
+1. to view one submission from one student. need studentid and assignmentid as parameters
+localhost/course-website-server/teachers/Grades/viewOneSubmissionOneStudent/:studentID/:asnID
+
+2. to view all submissions from one student. need studentid as parameter
+localhost/course-website-server/teachers/Grades/viewAllSubmissionsOneStudent/:studentID
+
+3. to view all submissions for one assignment. need assignmentid as parameter
+localhost/course-website-server/teachers/Grades/viewAllSubmissionsOneAssignment/:asnID
+
+4. number of students who submitted one assignment. need assignmentid as parameter
+localhost/course-website-server/teachers/Grades/rowCount/:asnID
+
+5. add or edit a students grade for one submission, need studentid and assignmentid as parameters, and the grade as post info 'grade'
+localhost/course-website-server/teachers/Grades/editGrade/:studentID/:asnID
+
+
+STUDENT FUNCTIONS
+
+ANNOUNCEMENTS
+1. view all announcements
+localhost/course-website-server/students/Announcements/loadAnnouncements
+
+
+ASSIGNMENTS
+1. submit an assignment, needs teacherid and asnid as parameters and the submission as 'submission'
+localhost/course-website-server/students/Assignments/submitAssignment/:teacherID/:asnID
+
+2. get back all assignments
+localhost/course-website-server/students/Assignments/viewAssignments
+
+3. get back one assignment, need asnid as parameter
+localhost/course-website-server/students/Assignments/viewOneAssignment/:asnID
+
+
+GRADES
+1. view grades
+localhost/course-website-server/students/Grades/viewGrades
+
+2. view one grade for specific assignment use assignmentid as parameter
+localhost/course-website-server/students/Grades/viewGrade/:asnID
